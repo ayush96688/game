@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachelorette Party Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir: #000000;
+            --rouge: #DC143C;
+            --pearl: #FAFAFA;
+            --smoke: #E8E8E8;
+            --gold: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--pearl);
+            color: var(--noir);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .app {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--smoke);
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--rouge);
+        }
+
+        .setup-screen {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .setup-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            opacity: 0.6;
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
+        }
+
+        .bride-input-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .bride-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--noir);
+            padding: 25px 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            color: var(--noir);
+            transition: border-color 0.3s;
+        }
+
+        .bride-input:focus {
+            outline: none;
+            border-bottom-color: var(--rouge);
+        }
+
+        .bride-input::placeholder {
+            color: var(--smoke);
+        }
+
+        .player-input-group {
+            display: flex;
+            gap: 1px;
+            background: var(--smoke);
+            border: 1px solid var(--smoke);
+            margin-bottom: 20px;
+        }
+
+        .player-input {
+            flex: 1;
+            background: var(--pearl);
+            border: none;
+            padding: 20px 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--noir);
+        }
+
+        .player-input:focus {
+            outline: none;
+            background: white;
+        }
+
+        .add-player-btn {
+            background: var(--noir);
+            color: var(--pearl);
+            border: none;
+            padding: 20px 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-player-btn:hover {
+            background: var(--rouge);
+        }
+
+        .player-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            min-height: 50px;
+        }
+
+        .player-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--noir);
+            color: var(--pearl);
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .player-tag.bride-tag {
+            background: var(--rouge);
+        }
+
+        .remove-player {
+            background: none;
+            border: none;
+            color: var(--pearl);
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0;
+            margin-left: 5px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .remove-player:hover {
+            opacity: 1;
+        }
+
+        .start-btn {
+            width: 100%;
+            background: var(--noir);
+            color: var(--pearl);
+            border: none;
+            padding: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 40px;
+        }
+
+        .start-btn:hover {
+            background: var(--rouge);
+        }
+
+        .start-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .start-btn:disabled:hover {
+            background: var(--noir);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--smoke);
+            border: 1px solid var(--smoke);
+        }
+
+        .game-card {
+            background: var(--pearl);
+            padding: 50px 30px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .game-card:hover {
+            background: var(--noir);
+        }
+
+        .game-card:hover .game-title,
+        .game-card:hover .game-subtitle,
+        .game-card:hover .game-count,
+        .game-card:hover .game-number {
+            color: var(--pearl);
+        }
+
+        .game-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--rouge);
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .game-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .game-subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+            transition: color 0.3s;
+        }
+
+        .game-count {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--rouge);
+            transition: color 0.3s;
+        }
+
+        .game-view {
+            display: none;
+        }
+
+        .game-view.active {
+            display: block;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--smoke);
+        }
+
+        .game-info h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 5px;
+        }
+
+        .game-meta {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rouge);
+        }
+
+        .back-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--noir);
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid var(--noir);
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--noir);
+            color: var(--pearl);
+        }
+
+        .question-container {
+            background: var(--pearl);
+            border: 1px solid var(--smoke);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 60px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .intensity {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid var(--rouge);
+            color: var(--rouge);
+        }
+
+        .current-player {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            padding: 8px 16px;
+            background: var(--noir);
+            color: var(--pearl);
+        }
+
+        .current-player.bride-player {
+            background: var(--rouge);
+        }
+
+        .question {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: 0.01em;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1px;
+            background: var(--smoke);
+            border: 1px solid var(--smoke);
+        }
+
+        .control-btn {
+            flex: 1;
+            background: var(--pearl);
+            border: none;
+            padding: 30px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--noir);
+        }
+
+        .control-btn:hover {
+            background: var(--noir);
+            color: var(--pearl);
+        }
+
+        .control-btn.primary {
+            flex: 2;
+            background: var(--noir);
+            color: var(--pearl);
+        }
+
+        .control-btn.primary:hover {
+            background: var(--rouge);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--smoke);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--rouge);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .party-info {
+            background: var(--smoke);
+            padding: 20px 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .info-value.bride-name {
+            color: var(--rouge);
+        }
+
+        .timer-info {
+            margin-left: auto;
+        }
+
+        /* Minimal Timer Widget */
+        .timer-widget {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .interval-option {
+            background: transparent;
+            color: var(--noir);
+            border: 1px solid var(--smoke);
+            padding: 10px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .interval-option:hover {
+            border-color: var(--noir);
+            background: var(--noir);
+            color: var(--pearl);
+        }
+
+        .interval-option.reset {
+            border-color: var(--smoke);
+            opacity: 0.6;
+        }
+
+        .interval-option.reset:hover {
+            border-color: var(--rouge);
+            background: transparent;
+            color: var(--rouge);
+            opacity: 1;
+        }
+
+        .drink-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--noir);
+            color: var(--pearl);
+            padding: 50px 80px;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            text-align: center;
+            animation: alertPulse 0.5s ease-out;
+            border: 3px solid var(--rouge);
+        }
+
+        @keyframes alertPulse {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .alert-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .alert-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        .alert-subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            opacity: 0.8;
+        }
+
+        .drink-alert.hidden {
+            display: none;
+        }
+
+        /* Drink Tracker */
+        .drink-tracker {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--smoke);
+        }
+
+        .drink-tracker-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .player-drinks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .player-drink-card {
+            background: var(--smoke);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .player-drink-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .player-drink-count {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--rouge);
+        }
+
+        /* Voting System */
+        .voting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1px;
+            background: var(--smoke);
+            border: 1px solid var(--smoke);
+            margin: 40px 0;
+        }
+
+        .vote-option {
+            background: var(--pearl);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .vote-option:hover {
+            background: var(--noir);
+            color: var(--pearl);
+        }
+
+        .vote-option.selected {
+            background: var(--rouge);
+            color: var(--pearl);
+        }
+
+        .vote-results {
+            margin: 30px 0;
+            display: none;
+        }
+
+        .vote-results.active {
+            display: block;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: var(--smoke);
+            margin-bottom: 10px;
+        }
+
+        .result-item.winner {
+            background: var(--noir);
+            color: var(--pearl);
+            border: 2px solid var(--rouge);
+        }
+
+        .result-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .result-votes {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--rouge);
+        }
+
+        .result-item.winner .result-votes {
+            color: var(--pearl);
+        }
+
+        .drink-instruction {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--rouge);
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--champagne);
+        }
+
+        /* Rule Cards */
+        .rules-list {
+            margin: 40px 0;
+        }
+
+        .rule-card {
+            background: var(--smoke);
+            padding: 25px 30px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rule-text {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .rule-penalty {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--rouge);
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header { margin-bottom: 40px; padding-bottom: 30px; }
+            .game-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .question-container { padding: 60px 30px; min-height: 350px; }
+            .control-btn { padding: 25px 20px; font-size: 0.75rem; }
+            .stats { gap: 40px; }
+            h1 { font-size: 3rem; }
+            .game-info h2 { font-size: 2rem; }
+            .bride-input { font-size: 2rem; padding: 20px 0; }
+            .current-player { position: static; margin-bottom: 20px; }
+            .intensity { position: static; margin-bottom: 20px; }
+            .question-container { padding-top: 30px; }
+            .party-info { flex-direction: column; align-items: flex-start; }
+            .timer-info { margin-left: 0; }
+            .timer-widget { flex-wrap: wrap; }
+            .drink-alert { 
+                padding: 40px 30px; 
+                width: 90%;
+                max-width: 400px;
+            }
+            .alert-emoji { font-size: 3rem; }
+            .alert-message { font-size: 1.8rem; }
+            .alert-subtitle { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Setup Screen -->
+        <div id="setupScreen">
+            <header>
+                <h1>Bachelorette</h1>
+                <p class="subtitle">Party Games</p>
+            </header>
+
+            <div class="setup-screen">
+                <div class="setup-section">
+                    <h3 class="section-title">The Bride</h3>
+                    <p class="section-subtitle">Who's the lucky one getting married?</p>
+                    <div class="bride-input-wrapper">
+                        <input type="text" id="brideNameInput" class="bride-input" placeholder="Her name">
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <h3 class="section-title">The Squad</h3>
+                    <p class="section-subtitle">Add everyone who's here to celebrate tonight</p>
+                    
+                    <div class="player-input-group">
+                        <input type="text" id="playerInput" class="player-input" placeholder="Name">
+                        <button class="add-player-btn" onclick="addPlayer()">Add</button>
+                    </div>
+
+                    <div class="player-list" id="setupPlayerList"></div>
+                </div>
+
+                <button class="start-btn" id="startGameBtn" onclick="startParty()" disabled>
+                    Let's Fucking Go
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="hidden">
+            <header>
+                <h1>Bachelorette</h1>
+                <p class="subtitle">Party Games</p>
+            </header>
+
+            <div class="party-info">
+                <div class="info-item">
+                    <span class="info-label">Bride:</span>
+                    <span class="info-value bride-name" id="brideDisplay"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Players:</span>
+                    <span class="info-value" id="playerCount"></span>
+                </div>
+                <div class="info-item timer-info">
+                    <span class="info-label">Timer:</span>
+                    <span class="info-value" id="menu-timer">—</span>
+                </div>
+            </div>
+
+            <!-- Minimal Timer Controls -->
+            <div class="timer-widget">
+                <button class="interval-option" onclick="startTimer(1800)">30 min</button>
+                <button class="interval-option" onclick="startTimer(3600)">1 hour</button>
+                <button class="interval-option reset" onclick="resetTimer()">Reset</button>
+            </div>
+
+            <div class="drink-alert hidden" id="drink-alert">
+                <div class="alert-emoji">🥃</div>
+                <div class="alert-message" id="alert-message">Time to drink</div>
+                <div class="alert-subtitle">Cheers, sluts</div>
+            </div>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="selectGame('kings-cup')">
+                    <div class="game-number">01</div>
+                    <div class="game-count">CLASSIC</div>
+                    <h3 class="game-title">Kings Cup</h3>
+                    <p class="game-subtitle">Draw a card. Follow the rule. Try not to die.</p>
+                </div>
+                
+                <div class="game-card" onclick="selectGame('never')">
+                    <div class="game-number">02</div>
+                    <div class="game-count">CONFESS</div>
+                    <h3 class="game-title">Never Have I</h3>
+                    <p class="game-subtitle">If you've done it, drink. We'll all know.</p>
+                </div>
+
+                <div class="game-card" onclick="selectGame('drink-if')">
+                    <div class="game-number">03</div>
+                    <div class="game-count">EXPOSURE</div>
+                    <h3 class="game-title">Drink If</h3>
+                    <p class="game-subtitle">50 ways to expose your secrets through alcohol</p>
+                </div>
+                
+                <div class="game-card" onclick="selectGame('confessions')">
+                    <div class="game-number">04</div>
+                    <div class="game-count">EXPLICIT</div>
+                    <h3 class="game-title">Confessions</h3>
+                    <p class="game-subtitle">Answer truthfully or lose all respect</p>
+                </div>
+                
+                <div class="game-card" onclick="selectGame('consequences')">
+                    <div class="game-number">05</div>
+                    <div class="game-count">NO MERCY</div>
+                    <h3 class="game-title">Consequences</h3>
+                    <p class="game-subtitle">Do the dare. Everyone's watching.</p>
+                </div>
+                
+                <div class="game-card" onclick="selectGame('bride')">
+                    <div class="game-number">06</div>
+                    <div class="game-count">INTIMATE</div>
+                    <h3 class="game-title">The Bride</h3>
+                    <p class="game-subtitle">Everything she never told you. Until now.</p>
+                </div>
+
+                <div class="game-card" onclick="selectGame('categories')">
+                    <div class="game-number">07</div>
+                    <div class="game-count">FAST</div>
+                    <h3 class="game-title">Categories</h3>
+                    <p class="game-subtitle">Think fast. Can't think? Drink fast.</p>
+                </div>
+
+                <div class="game-card" onclick="selectGame('waterfall')">
+                    <div class="game-number">08</div>
+                    <div class="game-count">ENDURANCE</div>
+                    <h3 class="game-title">Waterfall</h3>
+                    <p class="game-subtitle">Chain reaction drinking. Last one's fucked.</p>
+                </div>
+                
+                <div class="game-card" onclick="selectGame('judgment')">
+                    <div class="game-number">09</div>
+                    <div class="game-count">RUTHLESS</div>
+                    <h3 class="game-title">Judgment</h3>
+                    <p class="game-subtitle">Point fingers. Destroy friendships.</p>
+                </div>
+
+                <div class="game-card" onclick="selectGame('hot-seat')">
+                    <div class="game-number">10</div>
+                    <div class="game-count">INTERROGATION</div>
+                    <h3 class="game-title">Hot Seat</h3>
+                    <p class="game-subtitle">One victim. Everyone else asks. Hell begins.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kings Cup Game -->
+        <div id="kings-cup" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Kings Cup</h2>
+                    <p class="game-meta">Classic Rules</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="current-player" id="kings-player"></div>
+                <div class="intensity">DRAW</div>
+                <p class="question" id="kings-q">Click to draw a card</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="skipPlayer('kings-cup')">Skip Player</button>
+                <button class="control-btn primary" onclick="drawKingsCard()">Draw Card</button>
+            </div>
+
+            <div class="rules-list">
+                <div class="rule-card">
+                    <span class="rule-text"><strong>Ace:</strong> Waterfall - Everyone drinks</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>2:</strong> You - Pick someone to drink</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>3:</strong> Me - You drink</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>4:</strong> Floor - Last to touch floor drinks</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>5:</strong> Guys - All guys drink</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>6:</strong> Chicks - All girls drink</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>7:</strong> Heaven - Last hands up drinks</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>8:</strong> Mate - Pick a drinking buddy</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>9:</strong> Rhyme - Go around rhyming</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>10:</strong> Categories - Name items in category</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>Jack:</strong> Make a Rule - Create new rule</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>Queen:</strong> Question Master - Don't answer</span>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-text"><strong>King:</strong> Pour into center cup - 4th King drinks it all</span>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="kings-count">0</div>
+                    <div class="stat-label">Cards Drawn</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="kings-kings">0</div>
+                    <div class="stat-label">Kings Drawn</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Game -->
+        <div id="categories" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Categories</h2>
+                    <p class="game-meta">Think Fast or Drink</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="current-player" id="categories-player"></div>
+                <div class="intensity">SPEED</div>
+                <p class="question" id="categories-q">Name something in this category</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="skipPlayer('categories')">Can't Think - Drink</button>
+                <button class="control-btn primary" onclick="nextQuestion('categories')">Next Category</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="categories-count">0</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Waterfall Game -->
+        <div id="waterfall" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Waterfall</h2>
+                    <p class="game-meta">Chain Drinking</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="current-player" id="waterfall-player"></div>
+                <div class="intensity">ENDURANCE</div>
+                <p class="question">You start drinking. Everyone else follows. You can stop anytime, but each person can only stop after the person before them stops.</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn primary" onclick="startWaterfall()">Start Waterfall</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="waterfall-count">0</div>
+                    <div class="stat-label">Waterfalls</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include all previous games (confessions, consequences, bride, judgment, never, drink-if, hot-seat) -->
+        <!-- Confessions -->
+        <div id="confessions" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Confessions</h2>
+                    <p class="game-meta">Truth Exposed</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="current-player" id="confessions-player"></div>
+                <div class="intensity">EXPLICIT</div>
+                <p class="question" id="confessions-q">Click below to begin</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="skipPlayer('confessions')">Skip</button>
+                <button class="control-btn primary" onclick="nextQuestion('confessions')">Next</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="confessions-count">0</div>
+                    <div class="stat-label">Confessed</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequences -->
+        <div id="consequences" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Consequences</h2>
+                    <p class="game-meta">No Mercy</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="current-player" id="consequences-player"></div>
+                <div class="intensity">EXTREME</div>
+                <p class="question" id="consequences-q">Face your fate</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="skipPlayer('consequences')">Skip</button>
+                <button class="control-btn primary" onclick="nextQuestion('consequences')">Next</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="consequences-count">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bride -->
+        <div id="bride" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2 id="bride-title"></h2>
+                    <p class="game-meta">Her Secrets</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="intensity">INTIMATE</div>
+                <p class="question" id="bride-q">What does the group know?</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn primary" onclick="nextQuestion('bride')">Next</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="bride-count">0</div>
+                    <div class="stat-label">Revealed</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Judgment -->
+        <div id="judgment" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Judgment</h2>
+                    <p class="game-meta">Point & Accuse</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="intensity">VERDICT</div>
+                <p class="question" id="judgment-q">Who deserves judgment?</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn primary" onclick="nextQuestion('judgment')">Next</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="judgment-count">0</div>
+                    <div class="stat-label">Judged</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Never Have I -->
+        <div id="never" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Never Have I</h2>
+                    <p class="game-meta">Admit Your Sins</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="intensity">CONFESSION</div>
+                <p class="question" id="never-q">If you have, take a drink</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn primary" onclick="nextQuestion('never')">Next</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="never-count">0</div>
+                    <div class="stat-label">Admitted</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drink If -->
+        <div id="drink-if" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Drink If</h2>
+                    <p class="game-meta">Every Sip Tells</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="intensity">REVELRY</div>
+                <p class="question" id="drink-if-q">Will you drink?</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn primary" onclick="nextQuestion('drink-if')">Next</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="drink-if-count">0</div>
+                    <div class="stat-label">Rounds</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hot Seat -->
+        <div id="hot-seat" class="game-view">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2 id="hotseat-player-title">Hot Seat</h2>
+                    <p class="game-meta">Interrogation in Progress</p>
+                </div>
+                <a href="#" class="back-link" onclick="goBack(); return false;">Exit</a>
+            </div>
+            
+            <div class="question-container">
+                <div class="current-player" id="hotseat-current"></div>
+                <div class="intensity">TARGETED</div>
+                <p class="question" id="hotseat-q">Answer honestly or drink 3 times</p>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="nextVictim()">Next Victim</button>
+                <button class="control-btn primary" onclick="nextQuestion('hot-seat')">Next Question</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="hotseat-count">0</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gameData = {
+            confessions: [
+                "What's the dirtiest text you've ever sent?",
+                "Describe your wildest sexual fantasy in explicit detail.",
+                "What's the kinkiest thing you've done in bed?",
+                "Have you ever hooked up with someone purely for physical pleasure?",
+                "What's your actual body count? No lies.",
+                "What's the most public place you've had sex?",
+                "Have you ever been in a threesome or wanted one?",
+                "What sexual act are you dying to try but haven't?",
+                "Have you ever cheated? Tell everything.",
+                "What's the biggest age gap with a sexual partner?",
+                "How many times have you faked an orgasm?",
+                "What's your most shameful sexual encounter?",
+                "Have you ever sent nudes to multiple people simultaneously?",
+                "What's the most times you've had sex in 24 hours?",
+                "Have you ever slept with someone in this room's ex?",
+                "Shortest time between meeting someone and sleeping with them?",
+                "What toys have you used during sex?",
+                "What's your go-to porn category? Be specific.",
+                "Ever had sex with someone whose name you didn't know?",
+                "What's the most adventurous position you've tried?",
+                "Have you ever recorded yourself having sex?",
+                "What embarrassing thing turns you on?",
+                "Ever been caught having sex? Tell the story.",
+                "What's the longest dry spell you've had as an adult?",
+                "Ever had a crush on someone's parent? Who?",
+                "Describe your most romantic vs. most animalistic sexual experience.",
+                "Ever sexted someone while dating someone else?",
+                "What bedroom moment still haunts you with embarrassment?",
+                "Have you ever lied about birth control?",
+                "What have you done sexually that you'd never admit to a partner?"
+            ],
+            consequences: [
+                "Give someone here a 90-second sensual massage.",
+                "Describe in vivid detail what you'd do on a one-night stand.",
+                "Text your most recent hookup 'I miss you' right now. Show proof.",
+                "Read your last five sexts out loud to the group.",
+                "Let someone scroll through your camera roll for two minutes.",
+                "Demonstrate your signature bedroom move using a pillow.",
+                "Call an ex and tell them they were your best in bed.",
+                "Twerk for 60 seconds while making eye contact.",
+                "Let the bride draw anywhere on your body with lipstick.",
+                "Eat a banana as seductively as possible.",
+                "Give someone a proper lap dance for an entire song.",
+                "Post a thirst trap to Instagram right now. No deleting.",
+                "Show everyone your dating app profile and read your bio.",
+                "Let someone read through your entire DM history.",
+                "Perform your best stripper routine for 45 seconds.",
+                "Let the group pick a contact for you to send something flirty to.",
+                "Describe your biggest turn-on in pornographic detail.",
+                "Show everyone how you'd seduce someone at a bar.",
+                "Let someone check your browser history for 90 seconds.",
+                "Reenact your most embarrassing sexual moment.",
+                "Show the last intimate photo you sent someone.",
+                "Give your most realistic fake orgasm performance.",
+                "Let the bride give you a hickey wherever she wants.",
+                "Empty and display the contents of your bedside drawer.",
+                "Do body shots off the person to your right.",
+                "Reveal your absolute sexual dealbreaker.",
+                "Let someone tie your hands for the next 10 minutes.",
+                "Take off one piece of clothing and leave it off.",
+                "Describe the last time you had sex in uncomfortable detail.",
+                "Let everyone scroll through your liked posts on social media."
+            ],
+            bride: [
+                "What's [NAME]'s deepest sexual regret?",
+                "Describe [NAME]'s first time losing their virginity.",
+                "What's the kinkiest fantasy [NAME] has confessed to?",
+                "Who was [NAME]'s worst sexual partner and why?",
+                "What's [NAME]'s real body count before their partner?",
+                "Has [NAME] ever cheated on anyone? Details.",
+                "What's [NAME]'s most humiliating bedroom story?",
+                "What secretly turns [NAME] on?",
+                "Who was [NAME]'s most intense sexual encounter with?",
+                "What does [NAME] fantasize about during sex?",
+                "What's [NAME]'s absolute favorite position?",
+                "Has [NAME] ever had or wanted a threesome?",
+                "What has [NAME] lied to their partner about?",
+                "Who did [NAME] lose their virginity to? Details.",
+                "What's [NAME]'s secret addiction?",
+                "Has [NAME] ever hooked up with a coworker?",
+                "What's the most public place [NAME] has had sex?",
+                "What does [NAME] find most physically attractive?",
+                "Has [NAME] sent nudes they regret? To who?",
+                "What's [NAME]'s darkest sexual fantasy?",
+                "Who was [NAME]'s hottest ex and what made them hot?",
+                "What is [NAME] secretly insecure about sexually?",
+                "Has [NAME] ever faked it with their current partner?",
+                "What's [NAME]'s most scandalous drunk story?",
+                "Who in this room does [NAME] find most attractive?",
+                "What would [NAME] change about their sex life?",
+                "Has [NAME] ever been in love with someone else?",
+                "What's the biggest age gap [NAME] has had?",
+                "What's [NAME]'s most shameful secret?",
+                "Which celebrity would [NAME] cheat with if given the chance?"
+            ],
+            judgment: [
+                "Who's most likely to have a secret OnlyFans?",
+                "Who's most likely to hook up with a stranger tonight?",
+                "Who has the highest body count in this room?",
+                "Who's most likely to have a sex tape leak?",
+                "Who's most likely to get caught cheating?",
+                "Who's most likely to try something extremely kinky?",
+                "Who has already hooked up with someone here?",
+                "Who has definitely faked an orgasm recently?",
+                "Who's sliding into someone's DMs after this?",
+                "Who's waking up somewhere regrettable tomorrow?",
+                "Who has stalked everyone in this room online?",
+                "Who's sending a risky text they'll regret tonight?",
+                "Who has the wildest sex life?",
+                "Who got freaky on their first date?",
+                "Who dated someone just for money?",
+                "Who has the darkest sexual secret?",
+                "Who's been in a love triangle?",
+                "Who ghosts people after sleeping with them?",
+                "Who's slept with a friend's ex?",
+                "Who needs to be cut off first tonight?",
+                "Who's sexually frustrated right now?",
+                "Who definitely has a daddy or mommy kink?",
+                "Who has terrible taste in partners?",
+                "Who's into the weirdest stuff sexually?",
+                "Who's fantasized about someone in this room?",
+                "Who owns the most sex toys?",
+                "Who's getting arrested for public indecency?",
+                "Who has the worst commitment issues?",
+                "Who's hooked up with multiple people in one week?",
+                "Who has the most scandalous hidden past?"
+            ],
+            never: [
+                "Never have I ever had sex on the first date",
+                "Never have I ever had a one-night stand",
+                "Never have I ever sent nudes to the wrong person",
+                "Never have I ever lied to get out of a date",
+                "Never have I ever dated two people simultaneously",
+                "Never have I ever hooked up with someone I just met",
+                "Never have I ever gotten back with an ex for sex",
+                "Never have I ever stalked someone's social media obsessively",
+                "Never have I ever faked being sick to avoid someone",
+                "Never have I ever gone skinny dipping",
+                "Never have I ever fantasized about a friend's partner",
+                "Never have I ever kissed someone I deeply regretted",
+                "Never have I ever told a major lie to get laid",
+                "Never have I ever been in a purely physical relationship",
+                "Never have I ever crashed a party to meet someone",
+                "Never have I ever regretted a tattoo",
+                "Never have I ever fallen asleep during sex",
+                "Never have I ever pretended to like a terrible gift",
+                "Never have I ever snooped through someone's phone",
+                "Never have I ever had a workplace affair",
+                "Never have I ever sent a drunk text I regretted",
+                "Never have I ever lied about my sexual experience",
+                "Never have I ever hooked up in a bathroom at a party",
+                "Never have I ever ghosted someone after sleeping with them",
+                "Never have I ever used someone for physical pleasure",
+                "Never have I ever had sex in a car",
+                "Never have I ever made out with a stranger at a bar",
+                "Never have I ever lied about where I was to see someone",
+                "Never have I ever hooked up with someone to make an ex jealous",
+                "Never have I ever had feelings for two people at once",
+                "Never have I ever sent a nude while at work",
+                "Never have I ever had sex in a public place",
+                "Never have I ever hooked up with someone significantly older",
+                "Never have I ever hooked up with someone significantly younger",
+                "Never have I ever been walked in on during sex",
+                "Never have I ever sexted during a family event",
+                "Never have I ever lied about using protection",
+                "Never have I ever had a secret relationship",
+                "Never have I ever fantasized about someone I shouldn't",
+                "Never have I ever judged someone for their body count"
+            ],
+            'drink-if': [
+                "Drink if you've had sex today",
+                "Drink if you're thinking about someone right now",
+                "Drink if you've sent nudes this week",
+                "Drink if you've faked an orgasm",
+                "Drink if you've hooked up with someone at this party",
+                "Drink if your body count is over 10",
+                "Drink if you've cheated",
+                "Drink if you've been in a threesome",
+                "Drink if you own sex toys",
+                "Drink if you've watched porn this week",
+                "Drink if you've had sex in public",
+                "Drink if you're wearing sexy underwear",
+                "Drink if you've slept with an ex this year",
+                "Drink if you've ghosted someone after sex",
+                "Drink if you're attracted to someone here",
+                "Drink if you've lied about your body count",
+                "Drink if you've sexted during work",
+                "Drink if you've hooked up with a coworker",
+                "Drink if you've had a one night stand",
+                "Drink if you've sent nudes to multiple people",
+                "Drink if you're single and looking",
+                "Drink if you've made out with a stranger",
+                "Drink if you've had sex on the first date",
+                "Drink if you've used a dating app this month",
+                "Drink if you've had morning sex",
+                "Drink if you're thinking about sex right now",
+                "Drink if you've done it in a car",
+                "Drink if you've hooked up with a friend's ex",
+                "Drink if you have a secret crush",
+                "Drink if you've sent a risky text",
+                "Drink if you've been walked in on",
+                "Drink if you've faked being busy to avoid someone",
+                "Drink if you've stalked an ex online recently",
+                "Drink if you've had sex while drunk",
+                "Drink if you're wearing no underwear",
+                "Drink if you've kissed someone at this party",
+                "Drink if you've lied to your partner",
+                "Drink if you've fantasized about the bride",
+                "Drink if you're horny right now",
+                "Drink if you want to leave with someone tonight",
+                "Drink if you've sent a nude from this location",
+                "Drink if you've had a sex dream about someone here",
+                "Drink if you've hooked up in a bathroom",
+                "Drink if you own lingerie you've never worn",
+                "Drink if you've left hickeys on someone",
+                "Drink if you've been spanked during sex",
+                "Drink if you've role-played in bed",
+                "Drink if you've watched porn with a partner",
+                "Drink if you're currently hiding a relationship",
+                "Drink if you've made the first move this week"
+            ],
+            categories: [
+                "Sex positions you know by name",
+                "Celebrities you'd sleep with",
+                "Places you've had sex",
+                "Dating app names",
+                "Types of underwear",
+                "Things you've faked in bed",
+                "Excuses to leave a bad date",
+                "Pet names for body parts",
+                "Pickup lines you've used",
+                "Ways to initiate sex",
+                "Things to never say during sex",
+                "Porn categories",
+                "Relationship red flags",
+                "Types of kisses",
+                "Places to hide a hickey",
+                "Things found in a nightstand",
+                "Sexy Halloween costumes",
+                "Songs to have sex to",
+                "Types of dating profiles",
+                "Reasons to fake an emergency and leave"
+            ],
+            'most-likely': [
+                "Who's most likely to have a secret OnlyFans?",
+                "Who's most likely to hook up tonight?",
+                "Who's most likely to have the highest body count?",
+                "Who's most likely to get caught cheating?",
+                "Who's most likely to marry for money?",
+                "Who's most likely to have a one-night stand?",
+                "Who's most likely to date someone twice their age?",
+                "Who's most likely to ghost after sex?",
+                "Who's most likely to have a threesome?",
+                "Who's most likely to get back with an ex?",
+                "Who's most likely to fake an orgasm?",
+                "Who's most likely to drunk text an ex tonight?",
+                "Who's most likely to have sex in public?",
+                "Who's most likely to be into BDSM?",
+                "Who's most likely to have sent nudes today?",
+                "Who's most likely to fall in love this month?",
+                "Who's most likely to have a workplace romance?",
+                "Who's most likely to experiment sexually?",
+                "Who's most likely to cheat on their partner?",
+                "Who's most likely to become a sugar baby?",
+                "Who's most likely to join the mile high club?",
+                "Who's most likely to have a secret relationship?",
+                "Who's most likely to be sexually adventurous?",
+                "Who's most likely to make a sex tape?",
+                "Who's most likely to have an emotional affair?",
+                "Who's most likely to hook up with a stranger tonight?",
+                "Who's most likely to be thinking about sex right now?",
+                "Who's most likely to have gotten with someone at this party?",
+                "Who's most likely to lie about their body count?",
+                "Who's most likely to have the kinkiest fantasies?"
+            ],
+            'hot-seat': [
+                "What's your most embarrassing sexual experience?",
+                "Who in this room would you hook up with?",
+                "What's your actual body count?",
+                "Have you ever cheated? Details.",
+                "What's your darkest sexual fantasy?",
+                "Who was your best sexual partner?",
+                "What's the kinkiest thing you've done?",
+                "Have you ever sent nudes you regret?",
+                "What's your biggest sexual insecurity?",
+                "Who here have you fantasized about?",
+                "What would make you cheat?",
+                "What's something sexual you've never told anyone?",
+                "Who was your worst hookup?",
+                "What's your go-to porn category?",
+                "Have you hooked up with anyone here's ex?",
+                "What's the most public place you've had sex?",
+                "Do you have feelings for someone here?",
+                "What's your most shameful sexual moment?",
+                "Have you ever faked an orgasm? How often?",
+                "What turns you on that you're embarrassed about?",
+                "Who here knows your deepest secret?",
+                "What's something you've lied about sexually?",
+                "Have you ever been in love with two people?",
+                "What's your biggest regret with an ex?",
+                "Who would you sleep with if you could?",
+                "What's your most controversial sexual opinion?",
+                "Have you ever ghosted someone after sex?",
+                "What's something you judge others for sexually?",
+                "Who here would you never sleep with?",
+                "What's your actual fantasy right now?"
+            ]
+        };
+
+        const kingsCards = [
+            { card: 'Ace', rule: 'Waterfall! Everyone starts drinking. You can stop whenever, then the person to your right can stop, and so on.' },
+            { card: '2', rule: 'You! Pick someone to take a drink.' },
+            { card: '3', rule: 'Me! You take a drink.' },
+            { card: '4', rule: 'Floor! Everyone touch the floor. Last person drinks.' },
+            { card: '5', rule: 'Guys! All guys take a drink.' },
+            { card: '6', rule: 'Chicks! All girls take a drink.' },
+            { card: '7', rule: 'Heaven! Everyone point to the sky. Last person drinks.' },
+            { card: '8', rule: 'Mate! Pick someone to be your drinking buddy. When you drink, they drink.' },
+            { card: '9', rule: 'Rhyme! Say a word. Go around rhyming. First to mess up drinks.' },
+            { card: '10', rule: 'Categories! Pick a category. Go around naming things. First to fail drinks.' },
+            { card: 'Jack', rule: 'Make a Rule! Create a new rule for the game. Anyone who breaks it drinks.' },
+            { card: 'Queen', rule: 'Question Master! You can only be answered with questions. Anyone who answers normally drinks.' },
+            { card: 'King', rule: 'Pour some of your drink into the center cup. The 4th King drinks it ALL.' }
+        ];
+
+        let players = [];
+        let brideName = '';
+        let currentPlayerIndex = {};
+        let used = {};
+        let counts = {};
+        let timerInterval = null;
+        let timeRemaining = 0;
+        let kingsDrawn = 0;
+        let votes = {};
+        let votingInitialized = false;
+
+        Object.keys(gameData).forEach(game => {
+            used[game] = [];
+            counts[game] = 0;
+            currentPlayerIndex[game] = 0;
+        });
+
+        function updateStartButton() {
+            const btn = document.getElementById('startGameBtn');
+            const brideInput = document.getElementById('brideNameInput').value.trim();
+            
+            if (brideInput && players.length >= 2) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        function addPlayer() {
+            const input = document.getElementById('playerInput');
+            const name = input.value.trim();
+            
+            if (name && !players.includes(name)) {
+                players.push(name);
+                updateSetupPlayerList();
+                input.value = '';
+                updateStartButton();
+            }
+        }
+
+        function removePlayer(index) {
+            players.splice(index, 1);
+            updateSetupPlayerList();
+            updateStartButton();
+        }
+
+        function updateSetupPlayerList() {
+            const list = document.getElementById('setupPlayerList');
+            const bride = document.getElementById('brideNameInput').value.trim();
+            
+            list.innerHTML = players.map((p, i) => {
+                const isBride = bride && p.toLowerCase() === bride.toLowerCase();
+                return `<div class="player-tag ${isBride ? 'bride-tag' : ''}">${p}${isBride ? ' 👰' : ''}<button class="remove-player" onclick="removePlayer(${i})">×</button></div>`;
+            }).join('');
+        }
+
+        function startParty() {
+            brideName = document.getElementById('brideNameInput').value.trim();
+            
+            if (!brideName || players.length < 2) {
+                alert('Enter the bride\'s name and add at least 2 players');
+                return;
+            }
+
+            if (!players.some(p => p.toLowerCase() === brideName.toLowerCase())) {
+                players.push(brideName);
+            }
+
+            document.getElementById('setupScreen').classList.add('hidden');
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('brideDisplay').textContent = brideName;
+            document.getElementById('playerCount').textContent = players.length;
+        }
+
+        function selectGame(game) {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById(game).classList.add('active');
+            
+            if (['confessions', 'consequences', 'categories', 'kings-cup'].includes(game)) {
+                currentPlayerIndex[game] = 0;
+                updateCurrentPlayer(game);
+            }
+            
+            if (game === 'bride') {
+                document.getElementById('bride-title').textContent = brideName;
+            }
+            
+            if (game === 'hot-seat') {
+                currentPlayerIndex['hot-seat'] = 0;
+                updateHotSeatPlayer();
+            }
+
+            if (game === 'waterfall') {
+                currentPlayerIndex['waterfall'] = 0;
+                updateWaterfallPlayer();
+            }
+
+            if (game === 'most-likely') {
+                // Only initialize voting ONCE when entering game
+                if (!votingInitialized) {
+                    setupVoting();
+                }
+            }
+        }
+
+        function goBack() {
+            document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active'));
+            document.getElementById('mainMenu').classList.remove('hidden');
+        }
+
+        function updateCurrentPlayer(game) {
+            const playerEl = document.getElementById(game + '-player');
+            if (!playerEl || !players.length) return;
+            
+            const currentPlayer = players[currentPlayerIndex[game]];
+            if (!currentPlayer) return;
+            
+            const isBride = currentPlayer.toLowerCase() === brideName.toLowerCase();
+            
+            playerEl.textContent = currentPlayer;
+            if (isBride) {
+                playerEl.classList.add('bride-player');
+            } else {
+                playerEl.classList.remove('bride-player');
+            }
+        }
+
+        function skipPlayer(game) {
+            currentPlayerIndex[game] = (currentPlayerIndex[game] + 1) % players.length;
+            updateCurrentPlayer(game);
+        }
+
+        function getRandomItem(game) {
+            if (used[game].length === gameData[game].length) {
+                used[game] = [];
+            }
+            let item;
+            do {
+                item = gameData[game][Math.floor(Math.random() * gameData[game].length)];
+            } while (used[game].includes(item));
+            used[game].push(item);
+            return item;
+        }
+
+        function nextQuestion(game) {
+            let question = getRandomItem(game);
+            
+            if (game === 'bride' && brideName) {
+                question = question.replace(/\[NAME\]/g, brideName);
+            }
+            
+            const questionEl = document.getElementById(game + '-q');
+            const countEl = document.getElementById(game + '-count');
+            
+            if (questionEl) questionEl.textContent = question;
+            
+            counts[game]++;
+            if (countEl) countEl.textContent = counts[game];
+            
+            if (['confessions', 'consequences', 'categories'].includes(game)) {
+                currentPlayerIndex[game] = (currentPlayerIndex[game] + 1) % players.length;
+                updateCurrentPlayer(game);
+            }
+            
+            // Reset voting for most-likely ONLY when moving to next question
+            if (game === 'most-likely') {
+                votingInitialized = false; // Allow reset for next question
+                setupVoting();
+            }
+        }
+
+        function updateHotSeatPlayer() {
+            if (!players.length) return;
+            
+            const currentPlayer = players[currentPlayerIndex['hot-seat']];
+            if (!currentPlayer) return;
+            
+            const isBride = currentPlayer.toLowerCase() === brideName.toLowerCase();
+            
+            const titleEl = document.getElementById('hotseat-player-title');
+            const currentEl = document.getElementById('hotseat-current');
+            
+            if (titleEl) titleEl.textContent = currentPlayer;
+            if (currentEl) {
+                currentEl.textContent = currentPlayer;
+                if (isBride) {
+                    currentEl.classList.add('bride-player');
+                } else {
+                    currentEl.classList.remove('bride-player');
+                }
+            }
+        }
+
+        function nextVictim() {
+            currentPlayerIndex['hot-seat'] = (currentPlayerIndex['hot-seat'] + 1) % players.length;
+            updateHotSeatPlayer();
+            nextQuestion('hot-seat');
+        }
+
+        // Power Hour
+        // Kings Cup
+        function drawKingsCard() {
+            const card = kingsCards[Math.floor(Math.random() * kingsCards.length)];
+            const questionEl = document.getElementById('kings-q');
+            if (questionEl) {
+                questionEl.innerHTML = `<strong>${card.card}</strong><br><br>${card.rule}`;
+            }
+            
+            if (card.card === 'King') {
+                kingsDrawn++;
+                const kingsEl = document.getElementById('kings-kings');
+                if (kingsEl) kingsEl.textContent = kingsDrawn;
+            }
+            
+            counts['kings-cup']++;
+            const countEl = document.getElementById('kings-count');
+            if (countEl) countEl.textContent = counts['kings-cup'];
+            
+            if (players.length > 0) {
+                currentPlayerIndex['kings-cup'] = (currentPlayerIndex['kings-cup'] + 1) % players.length;
+                updateCurrentPlayer('kings-cup');
+            }
+        }
+
+        // Waterfall
+        function updateWaterfallPlayer() {
+            if (!players.length) return;
+            
+            const playerEl = document.getElementById('waterfall-player');
+            if (!playerEl) return;
+            
+            const currentPlayer = players[currentPlayerIndex['waterfall']];
+            if (!currentPlayer) return;
+            
+            const isBride = currentPlayer.toLowerCase() === brideName.toLowerCase();
+            
+            playerEl.textContent = currentPlayer;
+            if (isBride) {
+                playerEl.classList.add('bride-player');
+            } else {
+                playerEl.classList.remove('bride-player');
+            }
+        }
+
+        function startWaterfall() {
+            counts['waterfall']++;
+            const countEl = document.getElementById('waterfall-count');
+            if (countEl) countEl.textContent = counts['waterfall'];
+            
+            if (players.length > 0) {
+                currentPlayerIndex['waterfall'] = (currentPlayerIndex['waterfall'] + 1) % players.length;
+                updateWaterfallPlayer();
+            }
+        }
+
+        // Most Likely To Voting
+        function setupVoting() {
+            console.log('=== setupVoting CALLED ===');
+            console.log('votingInitialized was:', votingInitialized);
+            
+            // Initialize votes object for all players
+            votes = {};
+            players.forEach(p => {
+                votes[p] = 0;
+            });
+            
+            console.log('Votes reset to:', votes);
+            
+            const grid = document.getElementById('voting-grid');
+            const results = document.getElementById('vote-results');
+            if (!grid) return;
+            
+            // Create vote buttons
+            grid.innerHTML = players.map((p, i) => 
+                `<div class="vote-option" data-index="${i}" data-player="${p}">${p}</div>`
+            ).join('');
+            
+            // Add click listeners after creating HTML
+            const voteOptions = grid.querySelectorAll('.vote-option');
+            voteOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const playerName = this.getAttribute('data-player');
+                    
+                    // Toggle selection
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                        votes[playerName] = Math.max(0, (votes[playerName] || 0) - 1);
+                    } else {
+                        this.classList.add('selected');
+                        votes[playerName] = (votes[playerName] || 0) + 1;
+                    }
+                    
+                    console.log('Vote updated:', playerName, votes[playerName]);
+                    console.log('Full votes object NOW:', votes);
+                });
+            });
+            
+            if (results) {
+                results.classList.remove('active');
+                results.innerHTML = '';
+            }
+            
+            votingInitialized = true;
+            console.log('votingInitialized set to true');
+        }
+
+        function showVoteResults() {
+            const resultsEl = document.getElementById('vote-results');
+            if (!resultsEl) return;
+            
+            console.log('=== SHOWING RESULTS ===');
+            console.log('Players:', players);
+            console.log('Votes object:', JSON.stringify(votes));
+            
+            // Calculate results - make sure we're using the votes object correctly
+            const results = [];
+            for (let i = 0; i < players.length; i++) {
+                const playerName = players[i];
+                const voteCount = votes[playerName] || 0;
+                console.log(`Player: ${playerName}, Votes: ${voteCount}`);
+                results.push({
+                    name: playerName,
+                    votes: voteCount
+                });
+            }
+            
+            results.sort((a, b) => b.votes - a.votes);
+            
+            console.log('Sorted results:', results);
+            
+            const maxVotes = results[0].votes;
+            const winners = results.filter(r => r.votes === maxVotes && r.votes > 0);
+            
+            // Display results
+            let html = '<div style="margin-bottom: 20px;">';
+            results.forEach(r => {
+                const isWinner = r.votes === maxVotes && r.votes > 0;
+                html += `
+                    <div class="result-item ${isWinner ? 'winner' : ''}">
+                        <span class="result-name">${r.name}</span>
+                        <span class="result-votes">${r.votes} vote${r.votes !== 1 ? 's' : ''}</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            if (winners.length > 0) {
+                if (winners.length === 1) {
+                    html += `<div class="drink-instruction">${winners[0].name} drinks! 🥃</div>`;
+                } else {
+                    const names = winners.map(w => w.name).join(' & ');
+                    html += `<div class="drink-instruction">Tie! ${names} all drink! 🥃</div>`;
+                }
+            } else {
+                html += `<div class="drink-instruction">Nobody voted? Everyone drinks! 🥃</div>`;
+            }
+            
+            resultsEl.innerHTML = html;
+            resultsEl.classList.add('active');
+        }
+
+        function resetVotes() {
+            setupVoting();
+        }
+
+        // Event listeners
+        document.getElementById('brideNameInput')?.addEventListener('input', function() {
+            updateStartButton();
+            updateSetupPlayerList();
+        });
+
+        document.getElementById('playerInput')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addPlayer();
+        });
+
+        // Simple Timer Functions
+        function startTimer(seconds) {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            timeRemaining = seconds;
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    showDrinkAlert();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const timerEl = document.getElementById('menu-timer');
+            if (!timerEl) return;
+            
+            const mins = Math.floor(timeRemaining / 60);
+            const secs = timeRemaining % 60;
+            timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function resetTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timeRemaining = 0;
+            const timerEl = document.getElementById('menu-timer');
+            if (timerEl) timerEl.textContent = '—';
+            
+            const alertEl = document.getElementById('drink-alert');
+            if (alertEl) alertEl.classList.add('hidden');
+        }
+
+        function showDrinkAlert() {
+            const messages = [
+                "DRINK UP, BITCHES",
+                "TIME TO GET SLOPPY",
+                "SHOTS SHOTS SHOTS",
+                "BOTTOMS UP, SLUTS",
+                "DRINK OR GO HOME",
+                "CHEERS TO BAD DECISIONS",
+                "ONE MORE WON'T HURT",
+                "THE BRIDE DEMANDS IT",
+                "DRINK NOW, REGRET LATER",
+                "YOUR LIVER WILL FORGIVE YOU",
+                "THIS IS WHY WE'RE HERE",
+                "ACCOUNTABILITY IS FOR TOMORROW"
+            ];
+            
+            const alertEl = document.getElementById('drink-alert');
+            const messageEl = document.getElementById('alert-message');
+            if (!alertEl || !messageEl) return;
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            messageEl.textContent = randomMessage;
+            
+            alertEl.classList.remove('hidden');
+            
+            setTimeout(() => {
+                alertEl.classList.add('hidden');
+            }, 8000);
+        }
+    </script>
+</body>
+</html>
